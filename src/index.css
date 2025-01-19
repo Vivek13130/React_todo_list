@@ -1,0 +1,51 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+body {
+      margin: 4rem;
+      font-family: 'Nunito';
+}
+
+.buttonWithRing {
+      @apply ring ring-slate-500 hover:text-white hover:ring-green-400 rounded-lg px-2 py-1 font-semibold
+}
+
+.inputBox {
+      @apply rounded-lg p-2 px-4 mt-2 mb-8 ring-2 ring-slate-500 focus:ring-transparent
+}
+
+.react-datepicker {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: nowrap;
+      border: 1px solid hsl(0, 0%, 100%);
+      border-radius: 8px;
+      padding: 10px;
+      font-size: 1rem;
+      background-color: darkgrey;
+      overflow: hidden;
+}
+
+.react-datepicker__header {
+      padding: 0.5rem;
+      background-color: darkgrey;
+}
+
+.react-datepicker__day--selected {
+      color: rgb(0, 0, 0);
+      font-weight: bold;
+      background-color: rgb(255, 255, 0);
+}
+
+.react-datepicker__time-box {
+      width: fit-content !important;
+      background-color: darkgrey;
+}
+
+.react-datepicker__time-list-item--selected {
+      background-color: yellow !important;
+      font-weight: bold;
+      color: black !important;
+}
