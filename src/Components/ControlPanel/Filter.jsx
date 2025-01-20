@@ -1,21 +1,47 @@
 import React from 'react'
 import { useState } from 'react';
-const Filter = () => {
+const Filter = ({ filters, setFilters }) => {
+
+      function handleSubmit(e) {
+            e.preventDefault();
+            
+            const { showByLowPriority, showByMedPriority, showByHighPriority, showPendingTask, showCompletedTask, sortByPriority, sortByDeadline, sortByCreationTime } = e.target;
+            
+            const newFilters = {
+                  'showByLowPriority': showByLowPriority.value,
+                  'showByMedPriority': showByMedPriority.value,
+                  'showByHighPriority': showByHighPriority.value,
+                  'showPendingTask': showPendingTask.value,
+                  'showCompletedTask': showCompletedTask.value,
+                  'sortByPriority': sortByPriority.value,
+                  'sortByDeadline': sortByDeadline.value,
+                  'sortByCreationTime': sortByCreationTime.value,
+            }
+
+            setFilters(newFilters);
+            console.log("filters applied !")
+
+            document.getElementById('submit_button').textContent = 'Applied !';
+            document.getElementById('submit_button').classList.add( 'bg-green-800', 'text-white', 'font-bold', 'text-xl', '!ring-green-400' );
+            setTimeout( ()=>{setPopupVisibility(false)}, 1000);
+      }
+
 
       const [popupVisibility, setPopupVisibility] = useState(false);
 
+
       return (
             <>
-                  <button className='buttonWithRing'>Apply Filter</button>
+                  <button className='buttonWithRing' onClick={() => { setPopupVisibility(true) }}>Apply Filter</button>
 
                   {popupVisibility &&
                         <div>
-                              <div className="fixed inset-0 flex items-center justify-center">
+                              <div className="fixed inset-0 z-40 flex items-center justify-center">
 
-                                    <div className='absolute inset-0 z-40 bg-black opacity-90'></div>
+                                    <div className='absolute inset-0  bg-black opacity-95'></div>
 
                                     <div className='relative text-2xl bg-black z-50 text-white rounded-lg  p-8 ring ring-slate-500 hover:ring-gray-200' >
-                                          <form action="">
+                                          <form onSubmit={handleSubmit}>
 
                                                 <div className='border-2 rounded-lg p-4'>
                                                       <h1>Show By : </h1>
@@ -63,8 +89,8 @@ const Filter = () => {
                                                 </div>
 
                                                 <div className='flex flex-row justify-end mt-8'>
-                                                      <button className='buttonWithRing w-auto  mr-6'>Apply</button>
-                                                      <button className='buttonWithRing w-auto  hover:ring-red-500'>Cancel</button>
+                                                      <button type='submit' id='submit_button' className='buttonWithRing w-auto  mr-6'>Apply</button>
+                                                      <button onClick={() => setPopupVisibility(false)} className='buttonWithRing w-auto  hover:ring-red-500'>Cancel</button>
                                                 </div>
 
                                           </form>
