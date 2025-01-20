@@ -13,7 +13,7 @@ const AddTask = () => {
 
       return (
             <>
-                  <button className='buttonWithRing mr-5'>Add Task</button>
+                  <button className='buttonWithRing mr-6 '>Add Task</button>
                   {
                         popupVisibility &&
                         <div className='fixed inset-0 z-40 flex items-center justify-center'>
@@ -26,9 +26,11 @@ const AddTask = () => {
                               <div className='relative text-2xl bg-black z-50 text-white rounded-lg  p-10 ring ring-slate-400 hover:ring-gray-200' >
 
                                     <form action="">
-                                          <label htmlFor="taskTitle">Title : </label> <br />
-                                          <input type="text" name="taskTitle" id="taskTitle" className='inputBox w-full' />
-                                          <br />
+                                          <div className="indicator">
+                                                <span className="indicator-item badge">Required</span>
+                                                <label htmlFor="taskTitle">Title : </label> <br />
+                                                <input type="text" name="taskTitle" id="taskTitle" className='inputBox w-full' />
+                                          </div>
 
                                           <label htmlFor="titleDesc">Description : </label><br />
                                           <textarea name="titleDesc" id="titleDesc" placeholder='You can add it later..' className='inputBox w-full min-h-28'></textarea>
@@ -56,10 +58,7 @@ const AddTask = () => {
                                           <br />
 
                                           <label htmlFor="creationTime">Mention Creation Time : </label>
-                                          <select name="creationTime" id="creationTime" className='inputBox py-0'>
-                                                <option value="Yes">Yes</option>
-                                                <option value="No">No</option>
-                                          </select>
+                                          <input type="checkbox" id='creationTime' class="toggle toggle-info" checked="checked" />
                                           <br />
 
                                           <div className='flex flex-row justify-end'>

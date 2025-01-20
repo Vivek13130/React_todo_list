@@ -1,12 +1,12 @@
 import React from 'react'
-
+import { useState } from 'react';
 const Filter = () => {
 
       const [popupVisibility, setPopupVisibility] = useState(false);
 
       return (
             <>
-                  <button className='inputBox'>Apply Filter</button>
+                  <button className='buttonWithRing'>Apply Filter</button>
 
                   {popupVisibility &&
                         <div>
@@ -14,54 +14,57 @@ const Filter = () => {
 
                                     <div className='absolute inset-0 z-40 bg-black opacity-90'></div>
 
-                                    <div className='relative text-2xl bg-black z-50 text-white rounded-lg  p-10 ring ring-slate-400 hover:ring-gray-200' >
+                                    <div className='relative text-2xl bg-black z-50 text-white rounded-lg  p-8 ring ring-slate-500 hover:ring-gray-200' >
                                           <form action="">
-                                                <label>Filters : </label>
-                                                <br />
-                                                <br />
 
-                                                <label>Show By : </label>
-                                                <fieldset>
-                                                      <legend about='Priority'>
+                                                <div className='border-2 rounded-lg p-4'>
+                                                      <h1>Show By : </h1>
+                                                      <h2 className='ml-4 mt-2'>Priority : </h2>
+                                                      <div className=' flex flex-col justify-around sepe ml-10'>
 
-                                                            <input type="checkbox" name="showByLowPriority" id="lowPriorityShow" />
-                                                            <label htmlFor="lowPriorityShow">Low</label> <br />
+                                                            <div>
+                                                                  <input type="checkbox" name="showByLowPriority" id="lowPriorityShow" className='defaultCheckBox' />
+                                                                  <label htmlFor="lowPriorityShow">Low</label> <br />
+                                                            </div>
+                                                            <div>
+                                                                  <input type="checkbox" name="showByMedPriority" id="medPriorityShow" className='defaultCheckBox' />
+                                                                  <label htmlFor="medPriorityShow">Med</label> <br />
+                                                            </div>
+                                                            <div>
+                                                                  <input type="checkbox" name="showByHighPriority" id="highPriorityShow" className='defaultCheckBox' />
+                                                                  <label htmlFor="highPriorityShow">High</label> <br />
+                                                            </div>
+                                                      </div>
 
-                                                            <input type="checkbox" name="showByMedPriority" id="medPriorityShow" />
-                                                            <label htmlFor="medPriorityShow">Med</label> <br />
-
-                                                            <input type="checkbox" name="showByHighPriority" id="highPriorityShow" />
-                                                            <label htmlFor="highPriorityShow">High</label> <br />
-
-                                                      </legend>
-                                                </fieldset>
-
-                                                <fieldset>
-                                                      <legend about='Status'>
-
-                                                            <input type="checkbox" name="showPendingTask" id="showPendingTask" />
+                                                      <h2 className='ml-4 mt-2 '>Status : </h2>
+                                                      <div className='ml-10'>
+                                                            <input type="checkbox" name="showPendingTask" id="showPendingTask" className='defaultCheckBox' />
                                                             <label htmlFor="showPendingTask">Pending Tasks</label> <br />
 
-                                                            <input type="checkbox" name="showCompletedTask" id="showCompletedTask" />
+                                                            <input type="checkbox" name="showCompletedTask" id="showCompletedTask" className='defaultCheckBox' />
                                                             <label htmlFor="showCompletedTask">Completed Tasks</label> <br />
+                                                      </div>
+                                                </div>
 
-                                                      </legend>
-                                                </fieldset>
+                                                <div className='border-2 rounded-lg p-4 mt-8'>
 
-                                                <label htmlFor="">Sort By : </label>
 
-                                                <input type="checkbox" name="sortByPriority" id="sortByPriority" />
-                                                <label htmlFor="sortByPriority"> Priority </label> <br />
+                                                      <h2 >Sort By : </h2>
+                                                      <div className='ml-4'>
+                                                            <input type="checkbox" name="sortByPriority" id="sortByPriority" className='defaultCheckBox' />
+                                                            <label htmlFor="sortByPriority"> Priority </label> <br />
 
-                                                <input type="checkbox" name="sortByDeadline" id="sortByDeadline" />
-                                                <label htmlFor="sortByDeadline"> Deadline </label> <br />
+                                                            <input type="checkbox" name="sortByDeadline" id="sortByDeadline" className='defaultCheckBox' />
+                                                            <label htmlFor="sortByDeadline"> Deadline </label> <br />
 
-                                                <input type="checkbox" name="sortByCreationTime" id="sortByCreationTime" />
-                                                <label htmlFor="sortByCreationTime"> CreationTime </label> <br />
+                                                            <input type="checkbox" name="sortByCreationTime" id="sortByCreationTime" className='defaultCheckBox' />
+                                                            <label htmlFor="sortByCreationTime"> CreationTime </label> <br />
+                                                      </div>
+                                                </div>
 
-                                                <div className='flex flex-row justify-end'>
-                                                      <button className='buttonWithRing w-auto mt-5 mr-5'>Apply</button>
-                                                      <button className='buttonWithRing w-auto mt-5 hover:ring-red-500'>Cancel</button>
+                                                <div className='flex flex-row justify-end mt-8'>
+                                                      <button className='buttonWithRing w-auto  mr-6'>Apply</button>
+                                                      <button className='buttonWithRing w-auto  hover:ring-red-500'>Cancel</button>
                                                 </div>
 
                                           </form>
