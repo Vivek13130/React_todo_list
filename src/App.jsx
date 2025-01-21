@@ -1,3 +1,4 @@
+import ConfettiExplosion from "react-confetti-explosion";
 import ControlPanel from "./Components/ControlPanel/ControlPanel"
 import TaskList from "./Components/TaskList/TaskList"
 import { useState } from "react";
@@ -21,6 +22,7 @@ export default function App() {
 
       return (
             <div className="box-border">
+                  <ConfettiExplosion></ConfettiExplosion>
                   <ControlPanel tasklist = {tasklist} setTaskList = {setTaskList} filters = {filters} setFilters = {setFilters} ></ControlPanel>
                   <TaskList tasklist = {tasklist} filters = {filters}></TaskList>
             </div>
