@@ -2,24 +2,19 @@ import React, { useRef, useState } from 'react';
 import emailjs from '@emailjs/browser';
 import Popup from '../Utilities/popup';
 import ConfettiExplosion from 'react-confetti-explosion';
-import {
-      trollCelebration,
-      smallCelebration,
-      mediumCelebration,
-      largeCelebration
-} from '../Utilities/Constants';
+import { trollCelebration, smallCelebration, mediumCelebration, largeCelebration } from '../Utilities/Constants';
 
 export default function Feedback() {
       const [isExploding, setIsExploding] = useState(false);
-      const [explosionKey, setExplosionKey] = useState(0);
       const [buttonContent, setButtonContent] = useState("Send");
       const [rating, setRating] = useState(0); // Default rating value
+      const [popupVisibility, setPopupVisibility] = useState(false);
+      const form = useRef();
 
       const handleRatingChange = (e) => {
             setRating(e.target.value);
       };
 
-      let explosionData = {}
 
       function suitableCelebration() {
             let feedback = document.getElementById('feedback_text').value;
@@ -36,6 +31,7 @@ export default function Feedback() {
 
       function handleExplosion() {
             setIsExploding(true);
+            console.log("c1")
             let submitButton = document.getElementById('feedback_submit_button')
 
             submitButton.classList.add('cursor-not-allowed');
@@ -57,40 +53,31 @@ export default function Feedback() {
 
       }
 
-      const [popupVisibility, setPopupVisibility] = useState(true);
-      const form = useRef();
 
-      const sendEmail = (e) => {
+      function sendEmail(e){
             e.preventDefault();
-            console.log("Sending");
             setButtonContent("Sending....")
-
 
             const textArea = document.getElementById("feedback_text")
             textArea.value = textArea.value + "   ||   RATING : " + rating;
 
-            emailjs
-                  .sendForm('service_4g5iyib', 'template_guvmahq', form.current, {
-                        publicKey: 'CI_uVcwFj9ddIgiaN',
-                  })
-                  .then(
-                        () => {
-                              console.log('SUCCESS!');
-                              handleExplosion();
-
-                        },
-                        (error) => {
-                              console.log('FAILED...', error.text);
-                              setButtonContent('FAILED');
-                        },
-                  );
+            emailjs.sendForm('service_4g5iyib', 'template_guvmahq', form.current, {
+                  publicKey: 'CI_uVcwFj9ddIgiaN',
+            }).then(() => {
+                  handleExplosion();
+            },
+                  (error) => {
+                        console.log('FAILED...', error.text);
+                        setButtonContent('!!!  E R R O R  !!!');
+                  },
+            );
       };
 
       return (
             <>
 
                   <div className="tooltip  tooltip-warning" data-tip="No personal data required !">
-                        <button className=' buttonWithRing  ' onClick={() => { setPopupVisibility(true); console.log("popup open feedback") }} >Feedback</button>
+                        <button className=' buttonWithRing  ' onClick={() => { setPopupVisibility(true); }} >Feedback</button>
                   </div>
                   {
                         popupVisibility &&

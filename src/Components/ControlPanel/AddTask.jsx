@@ -3,7 +3,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import Popup from '../Utilities/popup';
 
-const AddTask = ({ tasklist, setTaskList }) => {
+const AddTask = ({ taskList, setTaskList }) => {
       const [popupVisibility, setPopupVisibility] = useState(false);
       const [selectedDate, setSelectedDate] = useState(null);
       const [buttonContent, setButtonContent] = useState("Add Task");
@@ -20,10 +20,11 @@ const AddTask = ({ tasklist, setTaskList }) => {
                   deadline: taskDeadline.value,
                   mentionCreationTime: setCreationTime.value,
                   completed: false,
+                  CreationTime : Date.now()
             }
 
             console.log("new task added !");
-            setTaskList(tasklist.concat(newTaskData));
+            setTaskList(taskList.concat(newTaskData));
             setButtonContent("Added !");
             document.getElementById('submit_button').classList.add('bg-green-800', 'text-white', 'font-bold', 'text-xl', '!ring-green-400');
 
